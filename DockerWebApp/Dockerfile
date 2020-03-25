@@ -6,17 +6,9 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
-WORKDIR /src
-COPY ["DockerWebApp/DockerWebApp.csproj", "DockerWebApp/"]
-RUN dotnet restore "DockerWebApp/DockerWebApp.csproj"
-COPY . .
-WORKDIR "/src/DockerWebApp"
-RUN dotnet build "DockerWebApp.csproj" -c Release -o /app/build
 
-FROM build AS publish
-RUN dotnet publish "DockerWebApp.csproj" -c Release -o /app/publish
+RUN git clone https://github.com/PabloGauna/DockerWebApp.git /src
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DockerWebApp.dll"]
+WORKDIR /src/DockerWebApp
+
+ENTRYPOINT ["dotnet", "run"]
