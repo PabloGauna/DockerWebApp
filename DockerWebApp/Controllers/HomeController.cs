@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DockerWebApp.Models;
 using DockerWebApp.Data;
+using DockerWebApp.ViewModels;
 
 namespace DockerWebApp.Controllers
 {
@@ -25,7 +26,12 @@ namespace DockerWebApp.Controllers
         {
             var people = _context.People.ToList();
 
-            return View();
+            var viewModel = new IndexViewModel()
+            {
+                People = people
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()
