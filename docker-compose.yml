@@ -23,9 +23,14 @@ services:
         networks:
             - my-network
         volumes:
-            - C:\MSSQL\BACKUP\KEEP:/var/opt/mssql/backups
-            - C:\MSSQL\DockerFiles\datafiles:/var/opt/sqlserver
-            - C:\MSSQL\DockerFiles\system:/var/opt/mssql
+            - backups:/var/opt/mssql/backups
+            - datafiles:/var/opt/sqlserver
+            - system:/var/opt/mssql
 networks:
     my-network:
         external: true
+
+volumes:
+    backups:
+    datafiles:
+    system:
