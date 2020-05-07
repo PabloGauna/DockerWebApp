@@ -10,7 +10,7 @@ namespace DockerWebApp.Data
     {
         public static void Initialize(DatabaseContext context)
         {
-            //context.Database.EnsureCreated();
+            context.Database.EnsureCreated();
 
             // Look for any people.
             if (context.People.Any())
