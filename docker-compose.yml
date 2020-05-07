@@ -26,11 +26,10 @@ services:
             - backups:/var/opt/mssql/backups
             - datafiles:/var/opt/sqlserver
             - system:/var/opt/mssql
-networks:
-    my-network:
-        external: true
-
 volumes:
     backups:
     datafiles:
     system:
+networks:
+    my-network:
+        
